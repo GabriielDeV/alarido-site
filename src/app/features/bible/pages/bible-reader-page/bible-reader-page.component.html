@@ -1,0 +1,86 @@
+<app-header title="Alarido" [showBack]="true" backRoute="/biblia">
+  <button class="header-icon-btn" aria-label="Configurações">
+    <span class="material-symbols-outlined">settings</span>
+  </button>
+</app-header>
+
+<main class="bible-reader-page">
+
+  @if (loading()) {
+    <app-loading-state message="Carregando capítulo..."></app-loading-state>
+  } @else if (!readerData()) {
+    <app-empty-state
+      title="Capítulo não encontrado"
+      description="Este capítulo não está disponível. Tente selecionar outro."
+    ></app-empty-state>
+  } @else {
+    <!-- Chapter Header -->
+    <div class="bible-reader-page__header-card">
+      <div class="bible-reader-page__testament-badge">{{ testamentLabel() }}</div>
+      <h2 class="bible-reader-page__book-title">
+        {{ readerData()!.bookName }} {{ readerData()!.chapterNumber }}
+      </h2>
+      @if (readerData()!.chapterTitle) {
+        <p class="bible-reader-page__chapter-subtitle">{{ readerData()!.chapterTitle }}</p>
+      }
+    </div>
+
+    <!-- Verses -->
+    <article
+      class="bible-reader-page__article"
+      [style.font-size.%]="fontSize"
+    >
+      @for (verse of readerData()!.verses; track verse.number) {
+        <div class="bible-verse">
+          <span class="bible-verse__number">{{ verse.number }}</span>
+          <span class="bible-verse__text">{{ verse.text }}</span>
+        </div>
+      }
+    </article>
+
+    <!-- Chapter Navigation -->
+    <nav class="bible-reader-page__nav">
+      <button
+        class="bible-reader-page__nav-btn"
+        [class.bible-reader-page__nav-btn--disabled]="!readerData()!.previousChapter"
+        [disabled]="!readerData()!.previousChapter"
+        (click)="navigateToPrev()"
+        aria-label="Capítulo anterior"
+      >
+        <span class="material-symbols-outlined">chevron_left</span>
+        <div class="bible-reader-page__nav-content">
+          <span class="bible-reader-page__nav-label">Anterior</span>
+          <span class="bible-reader-page__nav-title">
+            {{ readerData()!.previousChapter?.label ?? '—' }}
+          </span>
+        </div>
+      </button>
+
+      <button
+        class="bible-reader-page__nav-btn bible-reader-page__nav-btn--right"
+        [class.bible-reader-page__nav-btn--disabled]="!readerData()!.nextChapter"
+        [disabled]="!readerData()!.nextChapter"
+        (click)="navigateToNext()"
+        aria-label="Próximo capítulo"
+      >
+        <div class="bible-reader-page__nav-content bible-reader-page__nav-content--right">
+          <span class="bible-reader-page__nav-label">Próximo</span>
+          <span class="bible-reader-page__nav-title">
+            {{ readerData()!.nextChapter?.label ?? '—' }}
+          </span>
+        </div>
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </nav>
+  }
+
+</main>
+
+<app-reader-controls>
+  <button class="reader-action-btn" aria-label="Favoritar">
+    <span class="material-symbols-outlined">bookmark</span>
+  </button>
+  <button class="reader-play-btn" aria-label="Reproduzir áudio">
+    <span class="material-symbols-outlined">play_arrow</span>
+  </button>
+</app-reader-controls>

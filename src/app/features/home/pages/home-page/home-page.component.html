@@ -1,0 +1,73 @@
+<app-header title="Alarido">
+  <button class="header-icon-btn" aria-label="Configurações">
+    <span class="material-symbols-outlined">settings</span>
+  </button>
+</app-header>
+
+<main class="home-page">
+  <!-- Hero Section -->
+  <section class="home-page__hero">
+    <img
+      src="assets/images/alarido-logo.png"
+      alt="Alarido"
+      class="home-page__logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+    />
+    <div class="home-page__logo-fallback">
+      <span class="material-symbols-outlined home-page__logo-icon">auto_stories</span>
+    </div>
+    <div class="home-page__hero-text">
+      <h1 class="home-page__app-name">Bem-vindo ao Alarido</h1>
+      <p class="home-page__tagline">
+        Sua jornada de profundidade espiritual e meditação começa aqui.
+      </p>
+    </div>
+  </section>
+
+  <!-- Feature Cards -->
+  <section class="home-page__cards">
+    <!-- Bible Card -->
+    <div class="feature-card">
+      <div class="feature-card__icon-wrap feature-card__icon-wrap--primary">
+        <span class="material-symbols-outlined feature-card__icon">menu_book</span>
+      </div>
+      <div class="feature-card__content">
+        <h2 class="feature-card__title">Ler a Bíblia</h2>
+        <p class="feature-card__description">
+          Explore as Escrituras Sagradas com uma interface focada na leitura e no silêncio meditativo.
+        </p>
+      </div>
+      <button class="feature-card__btn feature-card__btn--primary" (click)="goToBible()">
+        INICIAR LEITURA
+        <span class="material-symbols-outlined feature-card__btn-icon">chevron_right</span>
+      </button>
+    </div>
+
+    <!-- Messages Card -->
+    <div class="feature-card">
+      <div class="feature-card__icon-wrap feature-card__icon-wrap--tertiary">
+        <span class="material-symbols-outlined feature-card__icon">auto_stories</span>
+      </div>
+      <div class="feature-card__content">
+        <h2 class="feature-card__title">Ler Mensagens</h2>
+        <p class="feature-card__description">
+          Mensagens selecionadas de William Marrion Branham para fortalecer sua fé e proporcionar clareza espiritual.
+        </p>
+      </div>
+      <button class="feature-card__btn feature-card__btn--secondary" (click)="goToMessages()">
+        VER MENSAGENS
+        <span class="material-symbols-outlined feature-card__btn-icon">chevron_right</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Daily Quote -->
+  <section class="home-page__quote">
+    <p class="home-page__quote-text">
+      "A mente tranquila é o portal para a compreensão espiritual. No silêncio, a verdade encontra sua voz."
+    </p>
+    <div class="home-page__quote-divider"></div>
+  </section>
+</main>
+
+<app-bottom-nav></app-bottom-nav>

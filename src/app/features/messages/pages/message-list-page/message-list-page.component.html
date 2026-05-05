@@ -1,0 +1,67 @@
+<app-header title="Alarido" [showBack]="true" backRoute="/home">
+  <button class="header-icon-btn" aria-label="Configurações">
+    <span class="material-symbols-outlined">settings</span>
+  </button>
+</app-header>
+
+<main class="message-list-page">
+
+  <!-- Hero -->
+  <div class="message-list-page__hero">
+    <span class="message-list-page__hero-label">Transcrições</span>
+    <h1 class="message-list-page__hero-title">Mensagens</h1>
+    <p class="message-list-page__hero-subtitle">William Marrion Branham</p>
+  </div>
+
+  <!-- Search -->
+  <div class="message-list-page__search">
+    <span class="material-symbols-outlined message-list-page__search-icon">search</span>
+    <input
+      type="text"
+      class="message-list-page__search-input"
+      placeholder="Buscar por título, data ou local..."
+      [value]="searchQuery()"
+      (input)="onSearch($any($event.target).value)"
+      aria-label="Buscar mensagem"
+    />
+  </div>
+
+  @if (loading()) {
+    <app-loading-state message="Carregando mensagens..."></app-loading-state>
+  } @else if (filteredMessages().length === 0) {
+    <app-empty-state
+      title="Nenhuma mensagem encontrada"
+      description="Tente buscar por outro título, data ou local."
+    ></app-empty-state>
+  } @else {
+    <div class="message-list-page__list">
+      @for (message of filteredMessages(); track message.id) {
+        <article class="message-card" (click)="openMessage(message.id)" role="button" tabindex="0"
+          (keydown.enter)="openMessage(message.id)">
+          <div class="message-card__meta">
+            <span class="message-card__type">TRANSCRIÇÃO</span>
+          </div>
+          <h3 class="message-card__title">{{ message.title }}</h3>
+          <div class="message-card__details">
+            <div class="message-card__detail">
+              <span class="material-symbols-outlined message-card__detail-icon">calendar_today</span>
+              <span>{{ message.formattedDate }}</span>
+            </div>
+            <div class="message-card__detail">
+              <span class="material-symbols-outlined message-card__detail-icon">location_on</span>
+              <span>{{ message.location }}</span>
+            </div>
+          </div>
+          <p class="message-card__summary">{{ message.summary }}</p>
+          <div class="message-card__action">
+            <span class="message-card__action-text">LER MENSAGEM</span>
+            <span class="material-symbols-outlined message-card__action-icon">arrow_forward</span>
+          </div>
+        </article>
+      }
+    </div>
+  }
+
+</main>
+
+<app-bottom-nav></app-bottom-nav>

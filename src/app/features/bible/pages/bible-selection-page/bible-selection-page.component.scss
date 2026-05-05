@@ -1,0 +1,288 @@
+.bible-selection-page {
+  padding-top: 88px;
+  padding-bottom: 96px;
+  padding-left: var(--reading-margin);
+  padding-right: var(--reading-margin);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  min-height: 100vh;
+
+  &__hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 160px;
+    border-radius: var(--radius-xl);
+    background: var(--color-surface-container);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+
+    // Decorative logo background
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('/assets/images/alarido-logo.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 0.22;
+      filter: grayscale(1) brightness(0.7);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    // Gradient overlay to ensure text legibility
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(17, 20, 21, 0.95) 0%,
+        rgba(17, 20, 21, 0.5) 50%,
+        rgba(17, 20, 21, 0.85) 100%
+      );
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @media (max-width: 480px) {
+      min-height: 140px;
+    }
+  }
+
+  &__hero-label {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-ui);
+    font-size: var(--text-label-caps);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+  }
+
+  &__hero-title {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-ui);
+    font-size: var(--text-headline-lg);
+    font-weight: 600;
+    color: var(--color-on-surface);
+    line-height: 1.2;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background-color: var(--color-surface-container);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: var(--radius-xl);
+    padding: 12px var(--space-md);
+    margin-bottom: var(--space-xl);
+    transition: border-color var(--transition-normal);
+
+    &:focus-within {
+      border-color: var(--color-primary);
+    }
+  }
+
+  &__search-icon {
+    color: var(--color-on-surface-variant);
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  &__search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font-ui);
+    font-size: var(--text-body-ui);
+    color: var(--color-on-surface);
+
+    &::placeholder {
+      color: var(--color-on-surface-variant);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+}
+
+// ─── Bible Section ─────────────────────────────────────────────────────────────
+.bible-section {
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  &__title {
+    font-family: var(--font-ui);
+    font-size: var(--text-headline-md);
+    font-weight: 500;
+    color: var(--color-on-surface);
+    white-space: nowrap;
+  }
+
+  &__divider {
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-outline-variant);
+  }
+
+  &__count {
+    font-family: var(--font-ui);
+    font-size: var(--text-label-caps);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-on-surface-variant);
+    white-space: nowrap;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+
+    @media (min-width: 480px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+// ─── Book Card ─────────────────────────────────────────────────────────────────
+.book-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-md);
+  background-color: var(--color-surface-container);
+  border-left: 4px solid transparent;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  text-align: left;
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-surface-container-high);
+    border-left-color: var(--color-secondary);
+
+    .book-card__name {
+      color: var(--color-secondary);
+    }
+  }
+
+  &--active {
+    background-color: var(--color-secondary-container) !important;
+    border-left-color: var(--color-secondary) !important;
+
+    .book-card__order {
+      color: var(--color-on-secondary-container);
+    }
+
+    .book-card__name {
+      color: var(--color-on-secondary-container) !important;
+      font-weight: 700;
+    }
+  }
+
+  &__order {
+    font-family: var(--font-ui);
+    font-size: var(--text-label-caps);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-on-surface-variant);
+    margin-bottom: 2px;
+  }
+
+  &__name {
+    font-family: var(--font-ui);
+    font-size: var(--text-body-ui);
+    font-weight: 600;
+    color: var(--color-on-surface);
+    transition: color var(--transition-fast);
+  }
+}
+
+// ─── Chapter Selector ─────────────────────────────────────────────────────────
+.chapter-selector {
+  background-color: var(--color-surface-container-low);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-ui);
+    font-size: var(--text-headline-md);
+    font-weight: 500;
+    color: var(--color-on-surface);
+  }
+
+  &__icon {
+    color: var(--color-secondary);
+    font-size: 22px;
+  }
+
+  &__total {
+    font-family: var(--font-ui);
+    font-size: var(--text-label-caps);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-on-surface-variant);
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+// ─── Chapter Bubble ────────────────────────────────────────────────────────────
+.chapter-bubble {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-container);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-on-surface);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-on-secondary);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

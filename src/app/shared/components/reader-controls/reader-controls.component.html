@@ -1,0 +1,15 @@
+<div class="reader-controls glass-nav">
+  <div class="reader-controls__font">
+    <span class="material-symbols-outlined reader-controls__font-icon">text_fields</span>
+    <button class="reader-controls__btn" (click)="decrease()" aria-label="Diminuir fonte">
+      <span class="reader-controls__a-small">A-</span>
+    </button>
+    <span class="reader-controls__size-label">{{ fontSize }}%</span>
+    <button class="reader-controls__btn" (click)="increase()" aria-label="Aumentar fonte">
+      <span class="reader-controls__a-large">A+</span>
+    </button>
+  </div>
+  <div class="reader-controls__actions">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+.reader-controls {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-full);
+  padding: 0 var(--space-lg);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+
+  &__font {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    border-right: 1px solid var(--color-outline-variant);
+    padding-right: var(--space-md);
+  }
+
+  &__font-icon {
+    font-size: 20px;
+    color: var(--color-on-surface-variant);
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-outline-variant);
+    color: var(--color-on-surface);
+    transition: background-color var(--transition-fast);
+
+    &:hover {
+      background-color: var(--color-surface-container-highest);
+    }
+  }
+
+  &__a-small {
+    font-size: 12px;
+    font-weight: 700;
+    font-family: var(--font-ui);
+  }
+
+  &__a-large {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: var(--font-ui);
+  }
+
+  &__size-label {
+    font-family: var(--font-ui);
+    font-size: var(--text-label-caps);
+    font-weight: 700;
+    color: var(--color-on-surface-variant);
+    min-width: 36px;
+    text-align: center;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+}
+
+.reader-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-on-surface-variant);
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--color-primary);
+  }
+
+  .material-symbols-outlined {
+    font-size: 22px;
+  }
+}
+
+.reader-play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary-container);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  .material-symbols-outlined {
+    font-size: 22px;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+}

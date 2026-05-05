@@ -1,0 +1,99 @@
+<app-header title="Alarido" [showBack]="true" backRoute="/mensagens">
+  <button class="header-icon-btn" aria-label="Configurações">
+    <span class="material-symbols-outlined">settings</span>
+  </button>
+</app-header>
+
+<main class="message-reader-page">
+
+  @if (loading()) {
+    <app-loading-state message="Carregando mensagem..."></app-loading-state>
+  } @else if (!readerData()) {
+    <app-empty-state
+      title="Mensagem não encontrada"
+      description="Esta mensagem não está disponível. Tente selecionar outra."
+    ></app-empty-state>
+  } @else {
+    <!-- Message Header Card -->
+    <div class="message-reader-page__header-card">
+      <div class="message-reader-page__header-card-inner">
+        <div class="message-reader-page__meta">
+          <span class="message-reader-page__type">TRANSCRIÇÃO</span>
+          <h1 class="message-reader-page__title">{{ readerData()!.title }}</h1>
+        </div>
+        <div class="message-reader-page__details">
+          <div class="message-reader-page__detail">
+            <span class="material-symbols-outlined message-reader-page__detail-icon">calendar_today</span>
+            <span>{{ readerData()!.formattedDate }}</span>
+          </div>
+          <div class="message-reader-page__detail">
+            <span class="material-symbols-outlined message-reader-page__detail-icon">location_on</span>
+            <span>{{ readerData()!.location }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Message Content -->
+    <article
+      class="message-reader-page__article"
+      [style.font-size.%]="fontSize"
+    >
+      @for (paragraph of readerData()!.paragraphs; track paragraph.number) {
+        <p class="message-paragraph">
+          <span class="message-paragraph__number">{{ paragraph.number }}</span>
+          {{ paragraph.text }}
+        </p>
+      }
+    </article>
+
+    <!-- Message Navigation -->
+    <nav class="message-reader-page__nav">
+      <button
+        class="message-reader-page__nav-btn"
+        [class.message-reader-page__nav-btn--disabled]="!readerData()!.previousMessage"
+        [disabled]="!readerData()!.previousMessage"
+        (click)="navigateToPrev()"
+        aria-label="Mensagem anterior"
+      >
+        <div class="message-reader-page__nav-btn-content">
+          <span class="message-reader-page__nav-label">MENSAGEM ANTERIOR</span>
+          <div class="message-reader-page__nav-title-row">
+            <span class="material-symbols-outlined">chevron_left</span>
+            <span class="message-reader-page__nav-title">
+              {{ readerData()!.previousMessage?.title ?? '—' }}
+            </span>
+          </div>
+        </div>
+      </button>
+
+      <button
+        class="message-reader-page__nav-btn message-reader-page__nav-btn--right"
+        [class.message-reader-page__nav-btn--disabled]="!readerData()!.nextMessage"
+        [disabled]="!readerData()!.nextMessage"
+        (click)="navigateToNext()"
+        aria-label="Próxima mensagem"
+      >
+        <div class="message-reader-page__nav-btn-content message-reader-page__nav-btn-content--right">
+          <span class="message-reader-page__nav-label">PRÓXIMA MENSAGEM</span>
+          <div class="message-reader-page__nav-title-row">
+            <span class="message-reader-page__nav-title">
+              {{ readerData()!.nextMessage?.title ?? '—' }}
+            </span>
+            <span class="material-symbols-outlined">chevron_right</span>
+          </div>
+        </div>
+      </button>
+    </nav>
+  }
+
+</main>
+
+<app-reader-controls>
+  <button class="reader-action-btn" aria-label="Favoritar">
+    <span class="material-symbols-outlined">bookmark</span>
+  </button>
+  <button class="reader-play-btn" aria-label="Reproduzir áudio">
+    <span class="material-symbols-outlined">play_arrow</span>
+  </button>
+</app-reader-controls>

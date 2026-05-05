@@ -1,0 +1,77 @@
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-outline-variant);
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    padding: 0 var(--space-lg);
+    max-width: var(--container-max);
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  &__back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    color: var(--color-primary);
+    transition: background-color var(--transition-normal);
+
+    &:hover {
+      background-color: var(--color-surface-container-highest);
+    }
+
+    .material-symbols-outlined {
+      font-size: 24px;
+    }
+  }
+
+  &__title {
+    font-family: var(--font-ui);
+    font-size: var(--text-headline-md);
+    font-weight: 600;
+    color: var(--color-on-surface);
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+}
+
+.header-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  color: var(--color-on-surface-variant);
+  transition: background-color var(--transition-normal);
+
+  &:hover {
+    background-color: var(--color-surface-container-highest);
+  }
+
+  .material-symbols-outlined {
+    font-size: 24px;
+  }
+}

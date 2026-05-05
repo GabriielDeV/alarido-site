@@ -1,0 +1,15 @@
+<header class="app-header">
+  <div class="app-header__inner">
+    <div class="app-header__left">
+      @if (showBack && backRoute) {
+        <a [routerLink]="backRoute" class="app-header__back-btn" aria-label="Voltar">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+      }
+      <span class="app-header__title">{{ title }}</span>
+    </div>
+    <div class="app-header__actions">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</header>

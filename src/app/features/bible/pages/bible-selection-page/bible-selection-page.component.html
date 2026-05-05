@@ -1,0 +1,114 @@
+<app-header title="Alarido" [showBack]="true" backRoute="/home">
+  <button class="header-icon-btn" aria-label="Configurações">
+    <span class="material-symbols-outlined">settings</span>
+  </button>
+</app-header>
+
+<main class="bible-selection-page">
+
+  @if (loading()) {
+    <app-loading-state message="Carregando livros..."></app-loading-state>
+  } @else {
+
+    <!-- Hero -->
+    <section class="bible-selection-page__hero">
+      <span class="bible-selection-page__hero-label">Sagradas Escrituras</span>
+      <h2 class="bible-selection-page__hero-title">Selecione um Livro</h2>
+    </section>
+
+    <!-- Search -->
+    <div class="bible-selection-page__search">
+      <span class="material-symbols-outlined bible-selection-page__search-icon">search</span>
+      <input
+        type="text"
+        class="bible-selection-page__search-input"
+        placeholder="Filtrar livros..."
+        [value]="searchQuery()"
+        (input)="onSearch($any($event.target).value)"
+        aria-label="Buscar livro bíblico"
+      />
+    </div>
+
+    @if (!hasResults()) {
+      <app-empty-state
+        title="Nenhum livro encontrado"
+        description="Tente buscar por outro nome ou abreviação."
+      ></app-empty-state>
+    } @else {
+      <div class="bible-selection-page__content">
+
+        <!-- Old Testament -->
+        @if (filteredOldTestament().length > 0) {
+          <section class="bible-section">
+            <div class="bible-section__header">
+              <h3 class="bible-section__title">Antigo Testamento</h3>
+              <div class="bible-section__divider"></div>
+              <span class="bible-section__count">{{ getOldTestamentCount() }} Livros</span>
+            </div>
+            <div class="bible-section__grid">
+              @for (book of filteredOldTestament(); track book.id) {
+                <button
+                  class="book-card"
+                  [class.book-card--active]="selectedBookId() === book.id"
+                  (click)="selectBook(book.id)"
+                  [attr.aria-pressed]="selectedBookId() === book.id"
+                >
+                  <span class="book-card__order">{{ book.order.toString().padStart(2, '0') }}</span>
+                  <span class="book-card__name">{{ book.name }}</span>
+                </button>
+              }
+            </div>
+          </section>
+        }
+
+        <!-- New Testament -->
+        @if (filteredNewTestament().length > 0) {
+          <section class="bible-section">
+            <div class="bible-section__header">
+              <h3 class="bible-section__title">Novo Testamento</h3>
+              <div class="bible-section__divider"></div>
+              <span class="bible-section__count">{{ getNewTestamentCount() }} Livros</span>
+            </div>
+            <div class="bible-section__grid">
+              @for (book of filteredNewTestament(); track book.id) {
+                <button
+                  class="book-card"
+                  [class.book-card--active]="selectedBookId() === book.id"
+                  (click)="selectBook(book.id)"
+                  [attr.aria-pressed]="selectedBookId() === book.id"
+                >
+                  <span class="book-card__order">{{ book.order.toString().padStart(2, '0') }}</span>
+                  <span class="book-card__name">{{ book.name }}</span>
+                </button>
+              }
+            </div>
+          </section>
+        }
+
+        <!-- Chapter Selector -->
+        @if (selectedBook()) {
+          <section class="chapter-selector">
+            <div class="chapter-selector__header">
+              <h3 class="chapter-selector__title">
+                <span class="material-symbols-outlined chapter-selector__icon">auto_stories</span>
+                {{ selectedBook()!.name }}
+              </h3>
+              <span class="chapter-selector__total">{{ selectedBook()!.totalChapters }} {{ selectedBook()!.totalChapters === 1 ? 'Capítulo' : 'Capítulos' }}</span>
+            </div>
+            <div class="chapter-selector__grid">
+              @for (chapter of selectedBook()!.chapters; track chapter.number) {
+                <button class="chapter-bubble" (click)="selectChapter(chapter.number)">
+                  {{ chapter.number }}
+                </button>
+              }
+            </div>
+          </section>
+        }
+
+      </div>
+    }
+
+  }
+</main>
+
+<app-bottom-nav></app-bottom-nav>

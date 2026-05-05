@@ -1,0 +1,151 @@
+.bible-reader-page {
+  padding-top: 88px;
+  padding-bottom: 140px;
+  padding-left: var(--reading-margin);
+  padding-right: var(--reading-margin);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  min-height: 100vh;
+
+  &__header-card {
+    margin-bottom: var(--space-xl);
+    text-align: center;
+    padding: var(--space-lg) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  &__testament-badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background-color: var(--color-secondary-container);
+    color: var(--color-on-secondary-container);
+    font-family: var(--font-ui);
+    font-size: var(--text-label-caps);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+  }
+
+  &__book-title {
+    font-family: var(--font-ui);
+    font-size: var(--text-headline-lg);
+    font-weight: 600;
+    color: var(--color-secondary);
+    line-height: 1.2;
+  }
+
+  &__chapter-subtitle {
+    font-family: var(--font-reading);
+    font-size: var(--text-body-ui);
+    font-style: italic;
+    color: var(--color-on-surface-variant);
+  }
+
+  &__article {
+    font-family: var(--font-reading);
+    color: var(--color-on-surface);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    transition: font-size 0.2s ease;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-outline-variant);
+    gap: var(--space-md);
+  }
+
+  &__nav-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--color-on-surface-variant);
+    transition: color var(--transition-normal);
+    cursor: pointer;
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+
+    &:hover:not(:disabled) {
+      color: var(--color-primary);
+      background-color: var(--color-surface-container);
+    }
+
+    &--disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+
+    &--right {
+      flex-direction: row;
+    }
+
+    .material-symbols-outlined {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+  }
+
+  &__nav-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    &--right {
+      text-align: right;
+    }
+  }
+
+  &__nav-label {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-outline);
+  }
+
+  &__nav-title {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-on-surface);
+  }
+}
+
+// ─── Bible Verse ───────────────────────────────────────────────────────────────
+.bible-verse {
+  display: flex;
+  gap: var(--space-md);
+  line-height: 1.7;
+  padding-left: var(--space-lg);
+  position: relative;
+
+  &__number {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    font-family: var(--font-ui);
+    font-size: var(--text-verse-number);
+    font-weight: 700;
+    color: var(--color-secondary);
+    line-height: 1;
+    user-select: none;
+  }
+
+  &__text {
+    font-family: var(--font-reading);
+    font-size: 1em;
+    color: var(--color-on-surface);
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+}

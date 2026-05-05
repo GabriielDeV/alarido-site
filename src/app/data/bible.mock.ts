@@ -1,0 +1,843 @@
+import { BibleBook } from '../core/models/bible.model';
+
+export const BIBLE_BOOKS: BibleBook[] = [
+  // ─── OLD TESTAMENT ───────────────────────────────────────────────────────────
+  {
+    id: 'genesis',
+    order: 1,
+    name: 'Gênesis',
+    abbreviation: 'Gn',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      {
+        number: 1,
+        title: 'A Criação',
+        verses: [
+          { number: 1, text: 'No princípio criou Deus os céus e a terra.' },
+          { number: 2, text: 'E a terra era sem forma e vazia; e havia trevas sobre a face do abismo; e o Espírito de Deus se movia sobre a face das águas.' },
+          { number: 3, text: 'E disse Deus: Haja luz. E houve luz.' },
+          { number: 4, text: 'E viu Deus que a luz era boa; e fez Deus separação entre a luz e as trevas.' },
+          { number: 5, text: 'E Deus chamou à luz Dia; e às trevas chamou Noite. E foi a tarde e a manhã, o dia primeiro.' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'exodus',
+    order: 2,
+    name: 'Êxodo',
+    abbreviation: 'Ex',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      {
+        number: 1,
+        title: 'Os filhos de Israel no Egito',
+        verses: [
+          { number: 1, text: 'Estes, pois, são os nomes dos filhos de Israel, que entraram no Egito com Jacó; cada um com a sua família.' },
+          { number: 2, text: 'Rúben, Simeão, Levi e Judá,' },
+          { number: 3, text: 'Issacar, Zebulom e Benjamim,' },
+          { number: 4, text: 'Dã, Naftali, Gade e Aser.' },
+          { number: 5, text: 'Todas as almas, pois, que saíram dos lombos de Jacó, foram setenta; mas José já estava no Egito.' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'leviticus',
+    order: 3,
+    name: 'Levítico',
+    abbreviation: 'Lv',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      {
+        number: 1,
+        title: 'Holocaustos',
+        verses: [
+          { number: 1, text: 'E chamou o Senhor a Moisés, e falou-lhe da tenda da congregação, dizendo:' },
+          { number: 2, text: 'Fala aos filhos de Israel, e dize-lhes: Quando algum de vós trouxer oferta ao Senhor, trareis as vossas ofertas do gado, dos bois e das ovelhas.' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'numbers',
+    order: 4,
+    name: 'Números',
+    abbreviation: 'Nm',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      {
+        number: 1,
+        verses: [
+          { number: 1, text: 'Falou o Senhor a Moisés no deserto do Sinai, na tenda da congregação, no primeiro dia do segundo mês, no segundo ano da sua saída da terra do Egito, dizendo:' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'deuteronomy',
+    order: 5,
+    name: 'Deuteronômio',
+    abbreviation: 'Dt',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      {
+        number: 1,
+        verses: [
+          { number: 1, text: 'Estas são as palavras que Moisés falou a todo o Israel, além do Jordão, no deserto, na campina fronteira a Sufe, entre Parã, e Tofel, e Labã, e Hazerote, e Dizaabe.' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'joshua',
+    order: 6,
+    name: 'Josué',
+    abbreviation: 'Js',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      {
+        number: 1,
+        verses: [
+          { number: 1, text: 'Aconteceu que, depois da morte de Moisés, servo do Senhor, falou o Senhor a Josué, filho de Num, servo de Moisés, dizendo:' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'judges',
+    order: 7,
+    name: 'Juízes',
+    abbreviation: 'Jz',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Aconteceu depois da morte de Josué que os filhos de Israel perguntaram ao Senhor, dizendo: Quem de nós subirá primeiro contra os cananeus, para pelejar contra eles?' }] },
+    ],
+  },
+  {
+    id: 'ruth',
+    order: 8,
+    name: 'Rute',
+    abbreviation: 'Rt',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Aconteceu nos dias em que julgavam os juízes, que houve uma fome na terra. E foi um homem de Belém de Judá peregrinar nos campos de Moabe, ele, e a sua mulher, e os seus dois filhos.' }] },
+    ],
+  },
+  {
+    id: '1samuel',
+    order: 9,
+    name: '1 Samuel',
+    abbreviation: '1Sm',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Havia um homem de Ramataim-Zofim, do monte de Efraim, cujo nome era Elcana, filho de Jeroão, filho de Eliú, filho de Toú, filho de Zufe, efraimita.' }] },
+    ],
+  },
+  {
+    id: '2samuel',
+    order: 10,
+    name: '2 Samuel',
+    abbreviation: '2Sm',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Depois da morte de Saul, havendo Davi voltado da derrota dos amalequitas, ficou Davi dois dias em Ziclague.' }] },
+    ],
+  },
+  {
+    id: '1kings',
+    order: 11,
+    name: '1 Reis',
+    abbreviation: '1Rs',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Ora, o rei Davi era velho, avançado em anos; e, ainda que o cobrissem de roupas, não aquecia.' }] },
+    ],
+  },
+  {
+    id: '2kings',
+    order: 12,
+    name: '2 Reis',
+    abbreviation: '2Rs',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Depois da morte de Acabe rebelou-se Moabe contra Israel.' }] },
+    ],
+  },
+  {
+    id: '1chronicles',
+    order: 13,
+    name: '1 Crônicas',
+    abbreviation: '1Cr',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Adão, Sete, Enos,' }] },
+    ],
+  },
+  {
+    id: '2chronicles',
+    order: 14,
+    name: '2 Crônicas',
+    abbreviation: '2Cr',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'E consolidou-se Salomão filho de Davi no seu reino; e o Senhor seu Deus era com ele, e o engrandeceu sobremaneira.' }] },
+    ],
+  },
+  {
+    id: 'ezra',
+    order: 15,
+    name: 'Esdras',
+    abbreviation: 'Ed',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'E no primeiro ano de Ciro, rei da Pérsia, para que se cumprisse a palavra do Senhor pela boca de Jeremias, despertou o Senhor o espírito de Ciro, rei da Pérsia.' }] },
+    ],
+  },
+  {
+    id: 'nehemiah',
+    order: 16,
+    name: 'Neemias',
+    abbreviation: 'Ne',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Palavras de Neemias, filho de Hacalias. Aconteceu no mês de Quisleu, no ano vigésimo, estando eu em Susã, a capital,' }] },
+    ],
+  },
+  {
+    id: 'esther',
+    order: 17,
+    name: 'Ester',
+    abbreviation: 'Et',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Aconteceu nos dias de Assuero (este é o Assuero que reinou desde a Índia até à Etiópia, sobre cento e vinte e sete províncias),' }] },
+    ],
+  },
+  {
+    id: 'job',
+    order: 18,
+    name: 'Jó',
+    abbreviation: 'Jó',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Havia um homem na terra de Uz, cujo nome era Jó; e era esse homem íntegro e reto, e temente a Deus e que se desviava do mal.' }] },
+    ],
+  },
+  {
+    id: 'psalms',
+    order: 19,
+    name: 'Salmos',
+    abbreviation: 'Sl',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 3,
+    chapters: [
+      {
+        number: 1,
+        title: 'O homem piedoso e o ímpio',
+        verses: [
+          { number: 1, text: 'Bem-aventurado o homem que não anda no conselho dos ímpios, nem se detém no caminho dos pecadores, nem se assenta na cadeira dos escarnecedores.' },
+          { number: 2, text: 'Antes tem o seu prazer na lei do Senhor, e na sua lei medita de dia e de noite.' },
+          { number: 3, text: 'Pois ele será como a árvore plantada junto a ribeiros de águas, que dá o seu fruto na estação própria, e cujas folhas não caem; e tudo quanto fizer prosperará.' },
+          { number: 4, text: 'Os ímpios não são assim; antes são como a palha que o vento dispersa.' },
+          { number: 5, text: 'Portanto os ímpios não subsistirão no juízo, nem os pecadores na congregação dos justos.' },
+          { number: 6, text: 'Porque o Senhor conhece o caminho dos justos; mas o caminho dos ímpios perecerá.' },
+        ],
+      },
+      {
+        number: 22,
+        title: 'O clamor do justo sofredor',
+        verses: [
+          { number: 1, text: 'Deus meu, Deus meu, por que me abandonaste? Por que estás tão longe de minha salvação e das palavras do meu gemido?' },
+          { number: 2, text: 'Deus meu, clamo de dia, e não me respondes; e de noite, e não tenho repouso.' },
+          { number: 3, text: 'Mas tu és santo, tu que habitas entre os louvores de Israel.' },
+        ],
+      },
+      {
+        number: 23,
+        title: 'O Senhor, meu Pastor',
+        verses: [
+          { number: 1, text: 'O Senhor é o meu pastor; nada me faltará.' },
+          { number: 2, text: 'Deitar-me faz em verdes pastos, guia-me mansamente a águas tranquilas.' },
+          { number: 3, text: 'Refrigera a minha alma; guia-me pelas veredas da justiça, por amor do seu nome.' },
+          { number: 4, text: 'Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum, porque tu estás comigo; o teu bordão e o teu cajado me consolam.' },
+          { number: 5, text: 'Preparas uma mesa perante mim na presença dos meus inimigos, unges a minha cabeça com óleo; o meu cálice transborda.' },
+          { number: 6, text: 'Certamente que a bondade e a misericórdia me seguirão todos os dias da minha vida; e habitarei na casa do Senhor por longos dias.' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proverbs',
+    order: 20,
+    name: 'Provérbios',
+    abbreviation: 'Pv',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      {
+        number: 1,
+        verses: [
+          { number: 1, text: 'Provérbios de Salomão, filho de Davi, rei de Israel:' },
+          { number: 2, text: 'Para se conhecer sabedoria e instrução, para se entenderem as palavras da prudência,' },
+          { number: 7, text: 'O temor do Senhor é o princípio da sabedoria; os loucos desprezam a sabedoria e a instrução.' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'ecclesiastes',
+    order: 21,
+    name: 'Eclesiastes',
+    abbreviation: 'Ec',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Palavras do pregador, filho de Davi, rei em Jerusalém.' }, { number: 2, text: 'Vaidade de vaidades, diz o pregador; vaidade de vaidades! Tudo é vaidade.' }] },
+    ],
+  },
+  {
+    id: 'song-of-solomon',
+    order: 22,
+    name: 'Cantares',
+    abbreviation: 'Ct',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'O cântico dos cânticos, que é de Salomão.' }] },
+    ],
+  },
+  {
+    id: 'isaiah',
+    order: 23,
+    name: 'Isaías',
+    abbreviation: 'Is',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      {
+        number: 1,
+        verses: [
+          { number: 1, text: 'Visão de Isaías, filho de Amós, que teve a respeito de Judá e Jerusalém nos dias de Uzias, Jotão, Acaz e Ezequias, reis de Judá.' },
+          { number: 18, text: 'Vinde, pois, e arrazoemos, diz o Senhor; se os vossos pecados forem como a escarlata, eles se tornarão brancos como a neve; se forem vermelhos como o carmesim, se tornarão como a lã.' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'jeremiah',
+    order: 24,
+    name: 'Jeremias',
+    abbreviation: 'Jr',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Palavras de Jeremias, filho de Hilquias, dos sacerdotes que estavam em Anatote, na terra de Benjamim.' }] },
+    ],
+  },
+  {
+    id: 'lamentations',
+    order: 25,
+    name: 'Lamentações',
+    abbreviation: 'Lm',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Como está assentada solitariamente a cidade que era tão populosa! Ela que era grande entre as nações, tornou-se como viúva; ela que era princesa entre as províncias, tornou-se tributária.' }] },
+    ],
+  },
+  {
+    id: 'ezekiel',
+    order: 26,
+    name: 'Ezequiel',
+    abbreviation: 'Ez',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'E aconteceu no trigésimo ano, no quarto mês, no quinto dia do mês, que, estando eu entre os cativos junto ao rio Quebar, os céus se abriram, e tive visões de Deus.' }] },
+    ],
+  },
+  {
+    id: 'daniel',
+    order: 27,
+    name: 'Daniel',
+    abbreviation: 'Dn',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'No ano terceiro do reinado de Jeoaquim, rei de Judá, veio Nabucodonosor, rei da Babilônia, a Jerusalém e a sitiou.' }] },
+    ],
+  },
+  {
+    id: 'hosea',
+    order: 28,
+    name: 'Oséias',
+    abbreviation: 'Os',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Palavra do Senhor que veio a Oséias, filho de Beeri, nos dias de Uzias, Jotão, Acaz e Ezequias, reis de Judá, e nos dias de Jeroboão, filho de Joás, rei de Israel.' }] },
+    ],
+  },
+  {
+    id: 'joel',
+    order: 29,
+    name: 'Joel',
+    abbreviation: 'Jl',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Palavra do Senhor que veio a Joel, filho de Petuel.' }] },
+    ],
+  },
+  {
+    id: 'amos',
+    order: 30,
+    name: 'Amós',
+    abbreviation: 'Am',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Palavras de Amós, que foi um dos pastores de Tecoa, as quais teve em visão acerca de Israel, nos dias de Uzias, rei de Judá, e nos dias de Jeroboão, filho de Joás, rei de Israel.' }] },
+    ],
+  },
+  {
+    id: 'obadiah',
+    order: 31,
+    name: 'Obadias',
+    abbreviation: 'Ob',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Visão de Obadias. Assim diz o Senhor Deus acerca de Edom: Ouvimos um rumor da parte do Senhor, e um embaixador foi enviado entre as nações.' }] },
+    ],
+  },
+  {
+    id: 'jonah',
+    order: 32,
+    name: 'Jonas',
+    abbreviation: 'Jn',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'E veio a palavra do Senhor a Jonas, filho de Amitai, dizendo:' }, { number: 2, text: 'Levanta-te, vai a Nínive, aquela grande cidade, e clama contra ela, porque a sua maldade subiu até à minha presença.' }] },
+    ],
+  },
+  {
+    id: 'micah',
+    order: 33,
+    name: 'Miquéias',
+    abbreviation: 'Mq',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Palavra do Senhor que veio a Miquéias, o morastita, nos dias de Jotão, Acaz e Ezequias, reis de Judá; o que ele viu a respeito de Samaria e Jerusalém.' }] },
+    ],
+  },
+  {
+    id: 'nahum',
+    order: 34,
+    name: 'Naum',
+    abbreviation: 'Na',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Pronunciamento acerca de Nínive. Livro da visão de Naum, o elqosita.' }] },
+    ],
+  },
+  {
+    id: 'habakkuk',
+    order: 35,
+    name: 'Habacuque',
+    abbreviation: 'Hc',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'O pronunciamento que Habacuque, o profeta, viu em visão.' }] },
+    ],
+  },
+  {
+    id: 'zephaniah',
+    order: 36,
+    name: 'Sofonias',
+    abbreviation: 'Sf',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Palavra do Senhor que veio a Sofonias, filho de Cusi, filho de Gedalias, filho de Amarias, filho de Ezequias, nos dias de Josias, filho de Amom, rei de Judá.' }] },
+    ],
+  },
+  {
+    id: 'haggai',
+    order: 37,
+    name: 'Ageu',
+    abbreviation: 'Ag',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'No segundo ano do rei Dario, no sexto mês, no primeiro dia do mês, veio a palavra do Senhor por intermédio do profeta Ageu a Zorobabel, filho de Sealtiel, governador de Judá.' }] },
+    ],
+  },
+  {
+    id: 'zechariah',
+    order: 38,
+    name: 'Zacarias',
+    abbreviation: 'Zc',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'No oitavo mês, no segundo ano de Dario, veio a palavra do Senhor ao profeta Zacarias, filho de Berequias, filho de Ido.' }] },
+    ],
+  },
+  {
+    id: 'malachi',
+    order: 39,
+    name: 'Malaquias',
+    abbreviation: 'Ml',
+    testament: 'OLD_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Pronunciamento da palavra do Senhor a Israel por intermédio de Malaquias.' }, { number: 2, text: 'Eu vos amei, diz o Senhor. Mas vós perguntais: Em que nos amaste? Não era Esaú irmão de Jacó? diz o Senhor. Contudo amei a Jacó,' }] },
+    ],
+  },
+
+  // ─── NEW TESTAMENT ───────────────────────────────────────────────────────────
+  {
+    id: 'matthew',
+    order: 40,
+    name: 'Mateus',
+    abbreviation: 'Mt',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      {
+        number: 1,
+        title: 'Genealogia de Jesus Cristo',
+        verses: [
+          { number: 1, text: 'Livro da genealogia de Jesus Cristo, filho de Davi, filho de Abraão.' },
+          { number: 18, text: 'Ora, o nascimento de Jesus Cristo foi assim: Estando Maria, sua mãe, desposada com José, sem que se houvessem chegado um ao outro, achou-se ter concebido do Espírito Santo.' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'mark',
+    order: 41,
+    name: 'Marcos',
+    abbreviation: 'Mc',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Princípio do evangelho de Jesus Cristo, Filho de Deus.' }, { number: 3, text: 'Voz do que clama no deserto: Preparai o caminho do Senhor; endireitai as suas veredas.' }] },
+    ],
+  },
+  {
+    id: 'luke',
+    order: 42,
+    name: 'Lucas',
+    abbreviation: 'Lc',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Visto que muitos houve que intentaram pôr em ordem a narração das cousas que entre nós são certíssimas,' }, { number: 4, text: 'para que conheças a certeza das cousas de que foste informado.' }] },
+    ],
+  },
+  {
+    id: 'john',
+    order: 43,
+    name: 'João',
+    abbreviation: 'Jo',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      {
+        number: 1,
+        title: 'O Verbo eterno',
+        verses: [
+          { number: 1, text: 'No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.' },
+          { number: 2, text: 'Ele estava no princípio com Deus.' },
+          { number: 3, text: 'Todas as cousas foram feitas por ele, e sem ele nada do que foi feito se fez.' },
+          { number: 14, text: 'E o Verbo se fez carne, e habitou entre nós, e vimos a sua glória, como a glória do unigênito do Pai, cheio de graça e de verdade.' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'acts',
+    order: 44,
+    name: 'Atos',
+    abbreviation: 'At',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'No primeiro livro, ó Teófilo, tratei de tudo o que Jesus começou a fazer e a ensinar,' }, { number: 8, text: 'mas recebereis a virtude do Espírito Santo, que há de vir sobre vós; e ser-me-eis testemunhas, tanto em Jerusalém como em toda a Judéia e Samaria, e até aos confins da terra.' }] },
+    ],
+  },
+  {
+    id: 'romans',
+    order: 45,
+    name: 'Romanos',
+    abbreviation: 'Rm',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo, servo de Jesus Cristo, chamado apóstolo, separado para o evangelho de Deus,' }, { number: 16, text: 'Porque não me envergonho do evangelho de Cristo, pois é o poder de Deus para a salvação de todo aquele que crê, primeiro do judeu, e também do grego.' }] },
+    ],
+  },
+  {
+    id: '1corinthians',
+    order: 46,
+    name: '1 Coríntios',
+    abbreviation: '1Co',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo, chamado apóstolo de Jesus Cristo pela vontade de Deus, e o irmão Sóstenes,' }] },
+    ],
+  },
+  {
+    id: '2corinthians',
+    order: 47,
+    name: '2 Coríntios',
+    abbreviation: '2Co',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo, apóstolo de Jesus Cristo pela vontade de Deus, e o irmão Timóteo, à igreja de Deus que está em Corinto.' }] },
+    ],
+  },
+  {
+    id: 'galatians',
+    order: 48,
+    name: 'Gálatas',
+    abbreviation: 'Gl',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo, apóstolo (não da parte de homens, nem por meio de homem algum, mas por Jesus Cristo e por Deus Pai, que o ressuscitou dos mortos),' }] },
+    ],
+  },
+  {
+    id: 'ephesians',
+    order: 49,
+    name: 'Efésios',
+    abbreviation: 'Ef',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo, apóstolo de Jesus Cristo pela vontade de Deus, aos santos que estão em Éfeso e aos fiéis em Cristo Jesus:' }, { number: 3, text: 'Bendito seja o Deus e Pai de nosso Senhor Jesus Cristo, que nos abençoou com todas as bênçãos espirituais nos lugares celestiais em Cristo,' }] },
+    ],
+  },
+  {
+    id: 'philippians',
+    order: 50,
+    name: 'Filipenses',
+    abbreviation: 'Fp',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo e Timóteo, servos de Jesus Cristo, a todos os santos em Cristo Jesus que estão em Filipos, com os bispos e diáconos:' }, { number: 4, text: 'Alegrai-vos sempre no Senhor; outra vez digo: alegrai-vos.' }] },
+    ],
+  },
+  {
+    id: 'colossians',
+    order: 51,
+    name: 'Colossenses',
+    abbreviation: 'Cl',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo, apóstolo de Jesus Cristo pela vontade de Deus, e o irmão Timóteo,' }] },
+    ],
+  },
+  {
+    id: '1thessalonians',
+    order: 52,
+    name: '1 Tessalonicenses',
+    abbreviation: '1Ts',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo, e Silvano, e Timóteo, à igreja dos tessalonicenses em Deus Pai e no Senhor Jesus Cristo:' }] },
+    ],
+  },
+  {
+    id: '2thessalonians',
+    order: 53,
+    name: '2 Tessalonicenses',
+    abbreviation: '2Ts',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo, e Silvano, e Timóteo, à igreja dos tessalonicenses em Deus, nosso Pai, e no Senhor Jesus Cristo:' }] },
+    ],
+  },
+  {
+    id: '1timothy',
+    order: 54,
+    name: '1 Timóteo',
+    abbreviation: '1Tm',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo, apóstolo de Jesus Cristo, por mandado de Deus, nosso Salvador, e do Senhor Jesus Cristo, nossa esperança,' }] },
+    ],
+  },
+  {
+    id: '2timothy',
+    order: 55,
+    name: '2 Timóteo',
+    abbreviation: '2Tm',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo, apóstolo de Jesus Cristo pela vontade de Deus segundo a promessa da vida que há em Cristo Jesus,' }] },
+    ],
+  },
+  {
+    id: 'titus',
+    order: 56,
+    name: 'Tito',
+    abbreviation: 'Tt',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo, servo de Deus e apóstolo de Jesus Cristo segundo a fé dos eleitos de Deus e o conhecimento da verdade que é segundo a piedade,' }] },
+    ],
+  },
+  {
+    id: 'philemon',
+    order: 57,
+    name: 'Filemom',
+    abbreviation: 'Fm',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Paulo, prisioneiro de Cristo Jesus, e o irmão Timóteo, a Filemom, nosso amado e cooperador,' }] },
+    ],
+  },
+  {
+    id: 'hebrews',
+    order: 58,
+    name: 'Hebreus',
+    abbreviation: 'Hb',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Havendo Deus antigamente falado muitas vezes e de muitas maneiras aos pais pelos profetas,' }, { number: 2, text: 'nestes últimos dias nos falou pelo Filho, a quem constituiu herdeiro de todas as cousas, pelo qual também fez o universo.' }] },
+    ],
+  },
+  {
+    id: 'james',
+    order: 59,
+    name: 'Tiago',
+    abbreviation: 'Tg',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Tiago, servo de Deus e do Senhor Jesus Cristo, às doze tribos que andam dispersas, saúde.' }, { number: 2, text: 'Meus irmãos, tende por motivo de toda a alegria o passardes por várias tentações,' }] },
+    ],
+  },
+  {
+    id: '1peter',
+    order: 60,
+    name: '1 Pedro',
+    abbreviation: '1Pe',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Pedro, apóstolo de Jesus Cristo, aos escolhidos, peregrinos da dispersão.' }] },
+    ],
+  },
+  {
+    id: '2peter',
+    order: 61,
+    name: '2 Pedro',
+    abbreviation: '2Pe',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Simeão Pedro, servo e apóstolo de Jesus Cristo, aos que conosco alcançaram igualmente preciosa fé na justiça do nosso Deus e Salvador Jesus Cristo:' }] },
+    ],
+  },
+  {
+    id: '1john',
+    order: 62,
+    name: '1 João',
+    abbreviation: '1Jo',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'O que era desde o princípio, o que ouvimos, o que vimos com os nossos olhos, o que contemplamos, e as nossas mãos apalparam, acerca do Verbo da vida,' }, { number: 5, text: 'E esta é a mensagem que dele ouvimos e vos anunciamos: que Deus é luz, e não há nele trevas nenhumas.' }] },
+    ],
+  },
+  {
+    id: '2john',
+    order: 63,
+    name: '2 João',
+    abbreviation: '2Jo',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'O ancião à senhora eleita e a seus filhos, a quem eu amo na verdade, e não somente eu, mas também todos os que têm conhecido a verdade;' }] },
+    ],
+  },
+  {
+    id: '3john',
+    order: 64,
+    name: '3 João',
+    abbreviation: '3Jo',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'O ancião ao amado Gaio, a quem amo na verdade.' }] },
+    ],
+  },
+  {
+    id: 'jude',
+    order: 65,
+    name: 'Judas',
+    abbreviation: 'Jd',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      { number: 1, verses: [{ number: 1, text: 'Judas, servo de Jesus Cristo e irmão de Tiago, aos chamados que são amados em Deus Pai e guardados por Jesus Cristo:' }] },
+    ],
+  },
+  {
+    id: 'revelation',
+    order: 66,
+    name: 'Apocalipse',
+    abbreviation: 'Ap',
+    testament: 'NEW_TESTAMENT',
+    totalChapters: 1,
+    chapters: [
+      {
+        number: 1,
+        title: 'Revelação de Jesus Cristo',
+        verses: [
+          { number: 1, text: 'Revelação de Jesus Cristo, que Deus lhe deu para mostrar aos seus servos as cousas que brevemente devem acontecer; e pelo seu anjo as enviou e as notificou ao seu servo João;' },
+          { number: 8, text: 'Eu sou o Alfa e o Ômega, o princípio e o fim, diz o Senhor, que é, e que era, e que há de vir, o Todo-Poderoso.' },
+        ],
+      },
+    ],
+  },
+];
