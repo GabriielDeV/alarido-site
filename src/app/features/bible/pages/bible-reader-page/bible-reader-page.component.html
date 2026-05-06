@@ -8,6 +8,11 @@
 
   @if (loading()) {
     <app-loading-state message="Carregando capítulo..."></app-loading-state>
+  } @else if (error()) {
+    <app-empty-state
+      title="Não foi possível carregar o capítulo"
+      [description]="error()!"
+    ></app-empty-state>
   } @else if (!readerData()) {
     <app-empty-state
       title="Capítulo não encontrado"
@@ -25,17 +30,12 @@
       }
     </div>
 
-    <!-- Verses -->
+    <!-- Chapter Content -->
     <article
       class="bible-reader-page__article"
       [style.font-size.%]="fontSize"
     >
-      @for (verse of readerData()!.verses; track verse.number) {
-        <div class="bible-verse">
-          <span class="bible-verse__number">{{ verse.number }}</span>
-          <span class="bible-verse__text">{{ verse.text }}</span>
-        </div>
-      }
+      <div class="bible-content" [innerHTML]="safeContentHtml()"></div>
     </article>
 
     <!-- Chapter Navigation -->

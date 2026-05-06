@@ -54,6 +54,41 @@
     transition: font-size 0.2s ease;
   }
 
+  // ── HTML content from API.Bible ────────────────────────────────────────────
+  .bible-content {
+    line-height: 1.8;
+
+    ::ng-deep {
+      p {
+        margin: 0 0 var(--space-md);
+        color: var(--color-on-surface);
+      }
+
+      span.v {
+        font-size: 0.65em;
+        font-weight: 700;
+        color: var(--color-primary);
+        vertical-align: super;
+        margin-right: 0.2em;
+        font-family: var(--font-ui);
+      }
+
+      span.add {
+        font-style: italic;
+        color: var(--color-on-surface-variant);
+      }
+
+      .s1, .s2 {
+        display: block;
+        font-weight: 600;
+        color: var(--color-secondary);
+        margin: var(--space-lg) 0 var(--space-sm);
+        font-size: 0.95em;
+        font-family: var(--font-ui);
+      }
+    }
+  }
+
   &__nav {
     display: flex;
     justify-content: space-between;

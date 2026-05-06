@@ -9,7 +9,9 @@ export interface ReadingPreference {
 
 export interface ReadingProgress {
   contentType: ContentType;
+  bibleId?: string;
   bookId?: string;
+  chapterId?: string;
   chapterNumber?: number;
   messageId?: string;
   lastReadAt: string;

@@ -8,6 +8,11 @@
 
   @if (loading()) {
     <app-loading-state message="Carregando livros..."></app-loading-state>
+  } @else if (error()) {
+    <app-empty-state
+      title="Não foi possível carregar a Bíblia"
+      [description]="error()!"
+    ></app-empty-state>
   } @else {
 
     <!-- Hero -->
@@ -93,21 +98,27 @@
 
         <!-- Chapter Selector -->
         @if (selectedBook()) {
-          <section class="chapter-selector">
+          <section class="chapter-selector" #chapterSelector>
             <div class="chapter-selector__header">
               <h3 class="chapter-selector__title">
                 <span class="material-symbols-outlined chapter-selector__icon">auto_stories</span>
                 {{ selectedBook()!.name }}
               </h3>
-              <span class="chapter-selector__total">{{ selectedBook()!.totalChapters }} {{ selectedBook()!.totalChapters === 1 ? 'Capítulo' : 'Capítulos' }}</span>
+              <span class="chapter-selector__total">
+                {{ loadingChapters() ? '...' : chapters().length + ' ' + (chapters().length === 1 ? 'Capítulo' : 'Capítulos') }}
+              </span>
             </div>
-            <div class="chapter-selector__grid">
-              @for (chapter of selectedBook()!.chapters; track chapter.number) {
-                <button class="chapter-bubble" (click)="selectChapter(chapter.number)">
-                  {{ chapter.number }}
-                </button>
-              }
-            </div>
+            @if (loadingChapters()) {
+              <app-loading-state message="Carregando capítulos..."></app-loading-state>
+            } @else {
+              <div class="chapter-selector__grid">
+                @for (chapter of chapters(); track chapter.id) {
+                  <button class="chapter-bubble" (click)="selectChapter(chapter)">
+                    {{ chapter.number }}
+                  </button>
+                }
+              </div>
+            }
           </section>
         }
 

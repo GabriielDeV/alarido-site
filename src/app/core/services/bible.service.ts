@@ -1,8 +1,12 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { BibleBook, BibleReaderData, Testament } from '../models/bible.model';
 import { BIBLE_BOOKS } from '../../data/bible.mock';
 
+/**
+ * @deprecated Use BibleFacadeService for API-backed data.
+ * This service is kept as an optional fallback/reference only.
+ */
 @Injectable({ providedIn: 'root' })
 export class BibleService {
   private books: BibleBook[] = BIBLE_BOOKS;
@@ -26,31 +30,35 @@ export class BibleService {
     const chapter = book.chapters.find((c) => c.number === chapterNumber);
     if (!chapter) return of(null);
 
-    const sortedChapters = [...book.chapters].sort((a, b) => a.number - b.number);
-    const currentIndex = sortedChapters.findIndex((c) => c.number === chapterNumber);
-
-    const prevChapter = currentIndex > 0 ? sortedChapters[currentIndex - 1] : null;
-    const nextChapter = currentIndex < sortedChapters.length - 1 ? sortedChapters[currentIndex + 1] : null;
+    const prevChapter = chapterNumber > 1 ? book.chapters[chapterNumber - 2] : null;
+    const nextChapter = chapterNumber < book.totalChapters ? book.chapters[chapterNumber] : null;
 
     return of({
+      bibleId: 'mock',
       bookId: book.id,
       bookName: book.name,
       testament: book.testament,
+      chapterId: chapter.id,
       chapterNumber: chapter.number,
-      chapterTitle: chapter.title,
+      chapterTitle: chapter.reference,
+      contentHtml: '',
+      copyright: '',
       previousChapter: prevChapter
-        ? { bookId: book.id, chapterNumber: prevChapter.number, label: `${book.name} ${prevChapter.number}` }
+        ? { bookId: book.id, chapterNumber: prevChapter.number, label: prevChapter.reference }
         : null,
       nextChapter: nextChapter
-        ? { bookId: book.id, chapterNumber: nextChapter.number, label: `${book.name} ${nextChapter.number}` }
+        ? { bookId: book.id, chapterNumber: nextChapter.number, label: nextChapter.reference }
         : null,
-      verses: chapter.verses,
     });
   }
 
   searchBooks(query: string): Observable<BibleBook[]> {
     const q = query.trim().toLowerCase();
     if (!q) return of(this.books);
-    return of(this.books.filter((b) => b.name.toLowerCase().includes(q) || b.abbreviation.toLowerCase().includes(q)));
+    return of(
+      this.books.filter(
+        (b) => b.name.toLowerCase().includes(q) || b.abbreviation.toLowerCase().includes(q),
+      ),
+    );
   }
 }
