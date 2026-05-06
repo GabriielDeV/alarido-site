@@ -10,53 +10,50 @@
   &__hero {
     position: relative;
     overflow: hidden;
-    min-height: 220px;
+    min-height: 280px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: var(--space-2xl) var(--space-lg);
     border-radius: var(--radius-xl);
-    background: var(--color-surface-container);
+    background: transparent;
     margin-bottom: var(--space-lg);
 
-    // Decorative logo background
-    &::before {
-      content: '';
+    // Decorative logo image (uses <img> for correct path resolution on GitHub Pages)
+    &-logo {
       position: absolute;
-      inset: 0;
-      background-image: url('/assets/images/alarido-logo.png');
-      background-repeat: no-repeat;
-      background-position: center right;
-      background-size: contain;
-      opacity: 0.55;
-      filter: brightness(0.9) saturate(1.2);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 115%;
+      width: auto;
+      opacity: 1;
+      filter: none;
       z-index: 0;
       pointer-events: none;
     }
 
-    // Gradient overlay for text legibility
+    // Bottom fade so the logo dissolves into the page background
     &::after {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(
-        90deg,
-        rgba(17, 20, 21, 0.98) 0%,
-        rgba(17, 20, 21, 0.72) 45%,
-        rgba(17, 20, 21, 0.35) 100%
+        to bottom,
+        transparent 0%,
+        transparent 40%,
+        var(--color-background) 100%
       );
       z-index: 0;
       pointer-events: none;
     }
 
     @media (max-width: 480px) {
-      min-height: 180px;
+      min-height: 220px;
       padding: var(--space-xl) var(--space-md);
 
-      &::before {
-        background-position: center;
-        background-size: 260px auto;
-        opacity: 0.45;
+      &-logo {
+        height: 90%;
       }
     }
   }
