@@ -1,54 +1,44 @@
-﻿// ─── DTOs for API.Bible ────────────────────────────────────────────────────────
+﻿// ─── DTOs for Alarido Bible API (/api/bible) ─────────────────────────────────
 
-export interface ApiBibleResponseDto<T> {
-  data: T;
-}
-
-export interface ApiBibleLanguageDto {
+export interface AlaridoBibleVersionDto {
   id: string;
   name: string;
-  nameLocal: string;
-  script: string;
-  scriptDirection: string;
+  abbreviation: string;
+  language: string;
 }
 
-export interface ApiBibleDto {
+export interface AlaridoBibleBookDto {
   id: string;
-  dblId: string;
-  abbreviation: string;
-  abbreviationLocal: string;
-  language: ApiBibleLanguageDto;
-  name: string;
-  nameLocal: string;
-  description: string;
-  descriptionLocal: string;
-}
-
-/** A book entry returned by GET /bibles/{id}/books */
-export interface ApiBibleBookDto {
-  id: string;          // "MAT"
-  bibleId: string;
-  abbreviation: string;
+  order: number;
   name: string;
   nameLong: string;
+  abbreviation: string;
+  testament: string;
 }
 
-/** A chapter entry returned by GET /bibles/{id}/books/{bookId}/chapters */
-export interface ApiBibleChapterDto {
-  id: string;          // "MAT.1"
-  bibleId: string;
-  bookId: string;      // "MAT"
-  number: string;      // "1" (string from API)
-  reference: string;   // "Matthew 1"
+export interface AlaridoBibleChapterDto {
+  id: string;
+  bookId: string;
+  number: number;
+  reference: string;
 }
 
-/** Chapter content returned by GET /bibles/{id}/chapters/{chapterId} */
-export interface ApiBibleChapterContentDto {
-  id: string;          // "MAT.1"
+export interface AlaridoBibleNavigationDto {
+  bookId: string;
+  chapterNumber: number;
+  label: string;
+}
+
+export interface AlaridoBibleReaderDto {
   bibleId: string;
-  number: string;      // "1"
-  bookId: string;      // "MAT"
-  reference: string;   // "Matthew 1"
-  content: string;     // HTML
+  bookId: string;
+  bookName: string;
+  testament: string;
+  chapterId: string;
+  chapterNumber: number;
+  reference: string;
+  contentHtml: string;
   copyright: string;
+  previousChapter: AlaridoBibleNavigationDto | null;
+  nextChapter: AlaridoBibleNavigationDto | null;
 }

@@ -1,9 +1,9 @@
 ﻿import { Injectable } from '@angular/core';
 import {
-  ApiBibleDto,
-  ApiBibleBookDto,
-  ApiBibleChapterDto,
-  ApiBibleChapterContentDto,
+  AlaridoBibleVersionDto,
+  AlaridoBibleBookDto,
+  AlaridoBibleChapterDto,
+  AlaridoBibleReaderDto,
 } from '../models/bible-api.dto';
 import {
   BibleBook,
@@ -16,79 +16,66 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class BibleMapper {
-  toBibleVersion(dto: ApiBibleDto): BibleVersion {
+  toBibleVersion(dto: AlaridoBibleVersionDto): BibleVersion {
     return {
       id: dto.id,
-      name: dto.nameLocal || dto.name,
-      abbreviation: dto.abbreviationLocal || dto.abbreviation,
-      language: dto.language.id,
+      name: dto.name,
+      abbreviation: dto.abbreviation,
+      language: dto.language,
     };
   }
 
-  toBibleBook(
-    dto: ApiBibleBookDto,
-    order: number,
-    chapters: BibleChapter[],
-  ): BibleBook {
-    const testament: Testament = order <= 39 ? 'OLD_TESTAMENT' : 'NEW_TESTAMENT';
+  toBibleBook(dto: AlaridoBibleBookDto): BibleBook {
     return {
       id: dto.id,
-      order,
+      order: dto.order,
       name: dto.name,
       nameLong: dto.nameLong,
       abbreviation: dto.abbreviation,
-      testament,
-      totalChapters: chapters.length,
-      chapters,
+      testament: dto.testament as Testament,
+      totalChapters: 0,
+      chapters: [],
     };
   }
 
-  toBibleChapter(dto: ApiBibleChapterDto): BibleChapter {
+  toBibleChapter(dto: AlaridoBibleChapterDto): BibleChapter {
     return {
       id: dto.id,
-      number: parseInt(dto.number, 10),
+      number: dto.number,
       reference: dto.reference,
     };
   }
 
-  toBibleReaderData(
-    contentDto: ApiBibleChapterContentDto,
-    book: BibleBook,
-    chapters: BibleChapter[],
-  ): BibleReaderData {
-    const chapterNumber = parseInt(contentDto.number, 10);
-    const chapterIndex = chapters.findIndex((c) => c.id === contentDto.id);
+  toBibleReaderData(dto: AlaridoBibleReaderDto): BibleReaderData {
+    const previousChapter: ChapterNavRef | null = dto.previousChapter
+      ? {
+          bookId: dto.previousChapter.bookId,
+          chapterNumber: dto.previousChapter.chapterNumber,
+          label: dto.previousChapter.label,
+        }
+      : null;
 
-    const previousChapter: ChapterNavRef | null =
-      chapterIndex > 0
-        ? {
-            bookId: book.id,
-            chapterNumber: chapters[chapterIndex - 1].number,
-            label: chapters[chapterIndex - 1].reference,
-          }
-        : null;
-
-    const nextChapter: ChapterNavRef | null =
-      chapterIndex >= 0 && chapterIndex < chapters.length - 1
-        ? {
-            bookId: book.id,
-            chapterNumber: chapters[chapterIndex + 1].number,
-            label: chapters[chapterIndex + 1].reference,
-          }
-        : null;
+    const nextChapter: ChapterNavRef | null = dto.nextChapter
+      ? {
+          bookId: dto.nextChapter.bookId,
+          chapterNumber: dto.nextChapter.chapterNumber,
+          label: dto.nextChapter.label,
+        }
+      : null;
 
     return {
-      bibleId: contentDto.bibleId,
-      bookId: contentDto.bookId,
-      bookName: book.name,
-      testament: book.testament,
-      chapterId: contentDto.id,
-      chapterNumber,
-      chapterTitle: contentDto.reference,
-      contentHtml: contentDto.content,
-      copyright: contentDto.copyright,
+      bibleId: dto.bibleId,
+      bookId: dto.bookId,
+      bookName: dto.bookName,
+      testament: dto.testament as Testament,
+      chapterId: dto.chapterId,
+      chapterNumber: dto.chapterNumber,
+      chapterTitle: dto.reference,
+      contentHtml: dto.contentHtml,
+      copyright: dto.copyright,
       previousChapter,
       nextChapter,
     };
   }
 }
+

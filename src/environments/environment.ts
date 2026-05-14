@@ -1,12 +1,8 @@
 export const environment = {
   production: false,
   apiUrl: 'https://alarido-api.onrender.com',
-  apiBible: {
-    baseUrl: 'https://rest.api.bible/v1',
-    apiKey: 'clChXBhb1SKGwzI3C2bTU',
+  bible: {
     defaultBibleId: '35b94e98b2e3a01a-01',
-    defaultLanguage: 'por',
-    defaultContentType: 'html',
   },
   keycloak: {
     issuer: 'https://alarido-keycloak.onrender.com/realms/alarido',
