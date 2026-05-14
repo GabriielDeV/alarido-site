@@ -10,6 +10,54 @@
     </div>
     <div class="app-header__actions">
       <ng-content></ng-content>
+      @if (showSettings) {
+        <button type="button" class="header-icon-btn" (click)="openSettingsModal()" aria-label="Configurações" title="Configurações">
+          <span class="material-symbols-outlined">settings</span>
+        </button>
+      }
+      @if (showLogout) {
+        <button type="button" class="header-icon-btn" (click)="logout()" aria-label="Sair" title="Sair">
+          <span class="material-symbols-outlined">logout</span>
+        </button>
+      }
     </div>
   </div>
 </header>
+
+@if (isSettingsModalOpen) {
+  <div class="settings-modal-backdrop" (click)="closeSettingsModal()" role="dialog" aria-modal="true" aria-label="Configurações">
+    <div class="settings-modal" (click)="$event.stopPropagation()">
+      <div class="settings-modal__header">
+        <span class="settings-modal__title">Configurações</span>
+        <button type="button" class="header-icon-btn settings-modal__close-btn" (click)="closeSettingsModal()" aria-label="Fechar">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="settings-modal__content">
+        @if (isLoadingUser && !currentUser) {
+          <p class="settings-modal__loading">Carregando dados...</p>
+        } @else if (settingsError && !currentUser) {
+          <p class="settings-modal__error">{{ settingsError }}</p>
+        } @else if (currentUser) {
+          <p class="settings-modal__section-title">Dados da conta</p>
+          <div class="settings-modal__field">
+            <span class="settings-modal__label">Nome</span>
+            <span class="settings-modal__value">{{ displayName }}</span>
+          </div>
+          <div class="settings-modal__field">
+            <span class="settings-modal__label">E-mail</span>
+            <span class="settings-modal__value">{{ currentUser.email }}</span>
+          </div>
+          @if (settingsError) {
+            <p class="settings-modal__error settings-modal__error--inline">{{ settingsError }}</p>
+          }
+        }
+      </div>
+
+      <div class="settings-modal__footer">
+        <button type="button" class="settings-modal__btn-close" (click)="closeSettingsModal()">Fechar</button>
+      </div>
+    </div>
+  </div>
+}

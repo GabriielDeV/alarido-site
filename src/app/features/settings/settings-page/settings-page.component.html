@@ -1,0 +1,24 @@
+<app-header title="Configurações" [showBack]="true" backRoute="/home" [showLogout]="true">
+</app-header>
+
+<main class="settings-page">
+  @if (isLoading) {
+    <div class="settings-page__loading">
+      <p>Carregando dados...</p>
+    </div>
+  } @else if (currentUser) {
+    <section class="settings-section">
+      <h2 class="settings-section__title">Dados da conta</h2>
+
+      <div class="settings-field">
+        <span class="settings-field__label">Nome</span>
+        <span class="settings-field__value">{{ displayName }}</span>
+      </div>
+
+      <div class="settings-field">
+        <span class="settings-field__label">E-mail</span>
+        <span class="settings-field__value">{{ currentUser.email }}</span>
+      </div>
+    </section>
+  }
+</main>

@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration production --base-href /alarido-site/",
+    "deploy": "npm run build:prod && copy dist\\alarido-site\\browser\\index.html dist\\alarido-site\\browser\\404.html && npx angular-cli-ghpages --dir=dist/alarido-site/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:alarido-site": "node dist/alarido-site/server/server.mjs"
