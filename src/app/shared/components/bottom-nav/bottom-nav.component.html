@@ -10,5 +10,9 @@
   <a routerLink="/mensagens" routerLinkActive="bottom-nav__item--active" class="bottom-nav__item">
     <span class="material-symbols-outlined bottom-nav__icon">auto_stories</span>
     <span class="bottom-nav__label">Mensagens</span>
-  </a>
-</nav>
+  </a>  @if (isAdmin()) {
+    <a routerLink="/importar" routerLinkActive="bottom-nav__item--active" class="bottom-nav__item">
+      <span class="material-symbols-outlined bottom-nav__icon">upload_file</span>
+      <span class="bottom-nav__label">Importar</span>
+    </a>
+  }</nav>

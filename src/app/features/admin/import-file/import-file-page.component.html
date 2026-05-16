@@ -1,0 +1,210 @@
+<app-header title="Importar Arquivo" [showBack]="true" backRoute="/home" [showSettings]="true" [showLogout]="true">
+</app-header>
+
+<main class="import-page">
+  <div class="import-page__container">
+
+    <div class="import-page__header">
+      <h1 class="import-page__title">Importar Arquivo</h1>
+      <p class="import-page__subtitle">
+        Selecione um arquivo do seu computador para adicionar novos conteúdos ao sistema.
+      </p>
+    </div>
+
+    <!-- Upload Area -->
+    @if (!selectedFile()) {
+      <div
+        class="upload-zone"
+        [class.upload-zone--drag-over]="isDragOver()"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave()"
+        (drop)="onDrop($event)"
+        (click)="fileInput.click()"
+        role="button"
+        tabindex="0"
+        (keydown.enter)="fileInput.click()"
+        aria-label="Clique ou arraste um arquivo para esta área"
+      >
+        <span class="material-symbols-outlined upload-zone__icon">upload_file</span>
+        <p class="upload-zone__text">Arraste um arquivo até aqui</p>
+        <p class="upload-zone__hint">ou clique para selecionar do seu computador</p>
+        <div class="upload-zone__formats">
+          <span class="format-badge">PDF</span>
+          <span class="format-badge">DOCX</span>
+        </div>
+        <input
+          #fileInput
+          type="file"
+          [accept]="acceptedFormats"
+          class="upload-zone__input"
+          (change)="onFileSelected($event)"
+          aria-hidden="true"
+        />
+      </div>
+    }
+
+    <!-- Selected File Info -->
+    @if (selectedFile(); as file) {
+      <div class="file-card" [class.file-card--error]="!file.isValid" [class.file-card--success]="file.isValid">
+        <div class="file-card__info">
+          <span class="material-symbols-outlined file-card__icon">
+            {{ file.isValid ? 'description' : 'error' }}
+          </span>
+          <div class="file-card__details">
+            <span class="file-card__name">{{ file.name }}</span>
+            <span class="file-card__size">{{ file.sizeFormatted }}</span>
+          </div>
+        </div>
+        <div class="file-card__status">
+          @if (file.isValid) {
+            <span class="file-card__status-badge file-card__status-badge--valid">
+              <span class="material-symbols-outlined">check_circle</span>
+              Arquivo válido
+            </span>
+          } @else {
+            <span class="file-card__status-badge file-card__status-badge--invalid">
+              <span class="material-symbols-outlined">cancel</span>
+              {{ file.errorMessage }}
+            </span>
+          }
+          <button type="button" class="file-card__remove-btn" (click)="removeFile()" aria-label="Remover arquivo">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- Import Success -->
+    @if (importSuccess) {
+      <div class="feedback-banner feedback-banner--success">
+        <span class="material-symbols-outlined">check_circle</span>
+        Arquivo importado com sucesso!
+      </div>
+    }
+
+    <!-- Import Processing / Pending -->
+    @if (isProcessing) {
+      <div class="feedback-banner feedback-banner--info">
+        <span class="material-symbols-outlined btn__spinner">progress_activity</span>
+        Processando importação… aguarde.
+      </div>
+    }
+
+    <!-- Import Error -->
+    @if (importError()) {
+      <div class="feedback-banner feedback-banner--error">
+        <span class="material-symbols-outlined">error</span>
+        {{ importError() }}
+      </div>
+    }
+
+    <!-- Metadata Form -->
+    @if (selectedFile()?.isValid && !importSuccess) {
+      <section class="metadata-section">
+        <h2 class="metadata-section__title">
+          <span class="material-symbols-outlined">edit_note</span>
+          Dados da mensagem
+        </h2>
+        <div class="metadata-section__fields">
+          <div class="field">
+            <label class="field__label" for="titulo">Título <span class="field__required">*</span></label>
+            <input
+              id="titulo"
+              class="field__input"
+              type="text"
+              [(ngModel)]="metadata.titulo"
+              placeholder="Ex.: O Raio de Luz"
+            />
+          </div>
+          <div class="field">
+            <label class="field__label" for="dataPregacao">Data da pregação</label>
+            <input
+              id="dataPregacao"
+              class="field__input"
+              type="date"
+              [(ngModel)]="metadata.dataPregacao"
+            />
+          </div>
+          <div class="field">
+            <label class="field__label" for="local">Local</label>
+            <input
+              id="local"
+              class="field__input"
+              type="text"
+              [(ngModel)]="metadata.local"
+              placeholder="Ex.: Jeffersonville, Indiana"
+            />
+          </div>
+          <div class="field">
+            <label class="field__label" for="descricao">Resumo</label>
+            <textarea
+              id="descricao"
+              class="field__input field__input--textarea"
+              [(ngModel)]="metadata.descricao"
+              rows="3"
+              placeholder="Breve descrição da mensagem"
+            ></textarea>
+          </div>
+        </div>
+      </section>
+    }
+
+    <!-- Rules Section -->
+    <section class="rules-section">
+      <h2 class="rules-section__title">
+        <span class="material-symbols-outlined">info</span>
+        Regras de importação
+      </h2>
+      <ul class="rules-section__list">
+        @for (rule of rules; track rule) {
+          <li class="rules-section__item">
+            <span class="material-symbols-outlined rules-section__dot">fiber_manual_record</span>
+            {{ rule }}
+          </li>
+        }
+      </ul>
+    </section>
+
+    <!-- Actions -->
+    <div class="import-page__actions">
+      <button type="button" class="btn btn--ghost" (click)="cancel()">
+        Cancelar
+      </button>
+
+      @if (importFailed) {
+        <button
+          type="button"
+          class="btn btn--secondary"
+          [disabled]="isImporting()"
+          (click)="reprocess()"
+        >
+          @if (isImporting()) {
+            <span class="material-symbols-outlined btn__spinner">progress_activity</span>
+            Reprocessando...
+          } @else {
+            <span class="material-symbols-outlined">replay</span>
+            Reprocessar
+          }
+        </button>
+      }
+
+      @if (!importSuccess && !importFailed) {
+        <button
+          type="button"
+          class="btn btn--primary"
+          [disabled]="!canImport"
+          (click)="importFile()"
+        >
+          @if (isImporting()) {
+            <span class="material-symbols-outlined btn__spinner">progress_activity</span>
+            Importando...
+          } @else {
+            <span class="material-symbols-outlined">upload</span>
+            Importar Arquivo
+          }
+        </button>
+      }
+    </div>
+
+  </div>
+</main>

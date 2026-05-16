@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/auth/auth.guard';
+import { adminGuard } from './core/auth/admin.guard';
 
 export const routes: Routes = [
   {
@@ -67,6 +68,14 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/settings/settings-page/settings-page.component').then(
         (m) => m.SettingsPageComponent,
+      ),
+  },
+  {
+    path: 'importar',
+    canActivate: [authGuard, adminGuard],
+    loadComponent: () =>
+      import('./features/admin/import-file/import-file-page.component').then(
+        (m) => m.ImportFilePageComponent,
       ),
   },
   {
